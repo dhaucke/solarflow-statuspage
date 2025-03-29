@@ -22,6 +22,4 @@ jobs:
         username: ${{ vars.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKER_HUB }}
     - name: Push to Docker Hub
-      run: 
-        docker login -u dhaucke --password-stdin ${{ secrets.DOCKER_HUB }}
-        docker push dhaucke/solarflow-statuspage:lastest
+      run: docker push dhaucke/solarflow-statuspage:lastest
