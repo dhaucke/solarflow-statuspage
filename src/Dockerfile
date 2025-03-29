@@ -4,7 +4,7 @@ FROM python:3.10-alpine
 WORKDIR /
 
 COPY src/requirements.txt /
-RUN pip install -r src/requirements.txt
+RUN pip install -r requirements.txt
 COPY src/zenapi /zenapi
 COPY src/static /static
 COPY src/templates /templates
