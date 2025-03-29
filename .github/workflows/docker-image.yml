@@ -17,4 +17,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file src/Dockerfile --tag dhaucke/solarflow-statuspage:lastest
     - name: Push to Docker Hub
-      run: docker push dhaucke/solarflow-statuspage:lastest
+      run: 
+        docker login -u dhaucke
+        docker push dhaucke/solarflow-statuspage:lastest
