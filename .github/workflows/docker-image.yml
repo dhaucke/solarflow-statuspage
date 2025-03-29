@@ -18,5 +18,5 @@ jobs:
       run: docker build . --file src/Dockerfile --tag dhaucke/solarflow-statuspage:lastest
     - name: Push to Docker Hub
       run: 
-        docker login -u dhaucke -p ${{ secrets.DOCKER_HUB }}
+        docker login -u dhaucke -password-stdin ${{ secrets.DOCKER_HUB }}
         docker push dhaucke/solarflow-statuspage:lastest
