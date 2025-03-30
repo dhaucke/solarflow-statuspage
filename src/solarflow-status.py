@@ -157,7 +157,7 @@ def on_local_message(client, userdata, msg):
     if "log" in msg.topic:
         payload = json.loads(payload)
         if "log" in payload:
-            #device_details["snNumber"] = payload["log"]["sn"]
+            device_details["snNumber"] = payload["log"]["sn"]
             socketio.emit('updateLimit', {'property': 'snNumber', 'value': f'{payload["log"]["sn"]}'})
 
     # act as a forwarder for write commands on local MQTT
