@@ -147,6 +147,9 @@ def on_local_message(client, userdata, msg):
         parts = msg.topic.split('/')
         device_details["productKey"] = parts[1]
         device_details["deviceKey"] = parts[2]
+    if not device_details.get("subscribed"):
+        local_subscribe(client)
+        device_details["subscribed"] = True
 
     # determine serial number from log messages
     if "log" in msg.topic:
