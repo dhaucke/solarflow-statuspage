@@ -139,6 +139,8 @@ def on_zendure_message(client, userdata, msg):
 
 def on_local_message(client, userdata, msg):
     global device_details
+    log.info(f"Received topic: {msg.topic}")
+    log.info(f"Payload: {msg.payload}")
     property = msg.topic.split('/')[-1]
     payload = msg.payload.decode()
 
@@ -261,7 +263,11 @@ def connect_local_mqtt(client_id) -> mqtt_client:
     local_client.reconnect_delay_set(min_delay=1, max_delay=120)
     local_client.on_connect = on_connect
     local_client.on_disconnect = on_local_disconnect
+    local_client.on_message = on_local_message
     local_client.connect(local_broker,local_port)
+    local_client.subscribe("/+/+/properties/report")
+    local_client.subscribe("solarflow-hub/#")
+    local_client.loop_start()
     return local_client
 
 def zendure_subscribe(client: mqtt_client, auth: ZenAuth):
