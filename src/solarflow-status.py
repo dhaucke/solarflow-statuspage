@@ -148,7 +148,7 @@ def on_local_message(client, userdata, msg):
         device_details["productKey"] = parts[1]
         device_details["deviceKey"] = parts[2]
     if not device_details.get("subscribed"):
-        local_subscribe(client)
+
         device_details["subscribed"] = True
 
     # determine serial number from log messages
@@ -340,8 +340,7 @@ def local_mqtt_background_task():
         except:
             log.exception("Connecting to local MQTT broker failed!")
             time.sleep(10)
-    
-    local_subscribe(client)
+
     client.loop_start()
 
 @app.route('/')
